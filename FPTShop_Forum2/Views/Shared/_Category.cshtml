@@ -1,0 +1,64 @@
+﻿@*@using Model.Entities
+@model IQueryable<Category>
+
+
+@{
+    List<Category> kq = (List<Category>)(ViewBag.kq);
+ }*@
+
+<div class="hd-col22">
+    <ul class="hd-mnleft">
+      
+            @*@foreach (var item in kq)
+            {
+                <li class="active">
+
+                    <a class="ic-android" href="javascript:void(0);" title=""><i></i> <h3>@item.Name</h3></a>
+
+                </li>
+            }*@
+        @{
+            Html.RenderAction("ListCategory", "Home");
+        }
+       
+      </ul>
+    
+</div>
+    @*<li class="active">
+
+            <a class="ic-android" href="javascript:void(0);" title=""><i></i> <h3>Android</h3></a>
+            <ul>
+                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+            </ul>
+
+        </li>*@
+
+            @*<li>
+                    <a class="ic-iphone" href="javascript:void(1);" title=""><i></i> <h3>iPhone - iOS</h3></a>
+                    <ul>
+                        <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                        <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                        <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                        <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                        <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                        <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                        <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                        <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                        <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                    </ul>
+                </li>
+
+                <li><a class="ic-wphone" href="javascript:void(2);" title=""><i></i> <h3>Windows Phone</h3></a></li>
+                <li><a class="ic-pclap" href="javascript:void(3);" title=""><i></i> <h3>PC / Laptop / Macbook</h3></a></li>
+                <li><a class="ic-tvmsp" href="javascript:void(4);" title=""><i></i> <h3>Tư vấn mua sản phẩm</h3></a></li>
+                <li><a class="ic-cnsd" href="javascript:void(5);" title=""><i></i> <h3>Cẩm nang sử dụng</h3></a></li>*@
+
+

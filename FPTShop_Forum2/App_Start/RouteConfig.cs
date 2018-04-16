@@ -13,10 +13,27 @@ namespace FPTShop_Forum2
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+
+            routes.MapRoute(
+                "ListChildCategory",
+                "child/{catChildURL}",
+                new { controller = "Home", action = "ListChildCategory", queryValues = UrlParameter.Optional },
+                new[] { "FPTShop_Forum2.Controllers" }
+                );
+
+            routes.MapRoute(
+                "ListPostCategory",
+                "{catURL}",
+                new { controller = "Home", action = "ListPostCategory", queryValues = UrlParameter.Optional },
+                new[] {"FPTShop_Forum2.Controllers"}
+                );
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
+                namespaces:new[] {"FPTShop_Forum2.Controllers"}
             );
         }
     }

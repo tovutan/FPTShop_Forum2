@@ -1,31 +1,206 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model IEnumerable<Model.Entities.Post>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
-</div>
+            @*<div class="hd-col22">
+                         
+                <ul class="hd-mnleft">
+
+                        <li class="active">
+
+                            <a class="ic-android" href="javascript:void(0);" title=""><i></i> <h3>Android</h3></a>
+                            <ul>
+                                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                            </ul>
+
+                        </li>
+
+
+
+                        <li>
+                            <a class="ic-iphone" href="javascript:void(1);" title=""><i></i> <h3>iPhone - iOS</h3></a>
+                            <ul>
+                                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Asus - Zenfone</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Nokia</h3> <span>200</span></a></li>
+                                <li><a href="" title=""><h3>Root Android</h3> <span>200</span></a></li>
+                            </ul>
+                       </li>
+
+                       <li><a class="ic-wphone" href="javascript:void(2);" title=""><i></i> <h3>Windows Phone</h3></a></li>
+                       <li><a class="ic-pclap" href="javascript:void(3);" title=""><i></i> <h3>PC / Laptop / Macbook</h3></a></li>
+                       <li><a class="ic-tvmsp" href="javascript:void(4);" title=""><i></i> <h3>Tư vấn mua sản phẩm</h3></a></li>
+                       <li><a class="ic-cnsd" href="javascript:void(5);" title=""><i></i> <h3>Cẩm nang sử dụng</h3></a></li>
+
+                    </ul>
+
+            </div>*@
+
+            <div class="hd-col78">
+                <ul class="hd-midmn clearfix">
+                    <li><a href="" title=""><h2>Cách sạc pin cho điện thoại</h2></a></li>
+                    <li><a href="" title=""><h2>Tắt lớp phủ màn hình android</h2></a></li>
+                    <li><a href="" title=""><h2>Khi điện thoại bị nóng</h2></a></li>
+                    <li><a href="" title=""><h2>Hướng dẫn điện thoại có 4G</h2></a></li>
+                    <li><a href="" title=""><h2>Kiểm tra iPhone chính hãng</h2></a></li>
+                </ul>
+
+                <div class="hd-rows clearfix">
+                    <div class="hd-col63">
+                        <h1 class="hd-mlnh">Hướng dẫn, thủ thuật mới nhất</h1>
+                        <div class="hd-lnews">
+                            <div class="hd-iln clearfix">
+                                <a class="hd-mlnimg" href="" title=""><img src="/images/ex/news.jpg" alt=""></a>
+                                <div class="hd-mlnif">
+                                    <h3><a class="hd-mlnname" href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8</a></h3>
+                                    <p class="hd-mlnsub">Hard reset sẽ xóa toàn bộ dữ liệu của máy về lại mặc định và bạn nên đăng xuất các tài khoản Google ra khỏi máy…</p>
+                                    <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                                </div>
+                            </div>
+                            <!--1-->
+                            <div class="hd-iln clearfix">
+                                <a class="hd-mlnimg" href="" title=""><img src="/images/ex/news.jpg" alt=""></a>
+                                <div class="hd-mlnif">
+                                    <h3><a class="hd-mlnname" href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8</a></h3>
+                                    <p class="hd-mlnsub">Hard reset sẽ xóa toàn bộ dữ liệu của máy về lại mặc định và bạn nên đăng xuất các tài khoản Google ra khỏi máy…</p>
+                                    <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                                </div>
+                            </div>
+                            <!--1-->
+                            <div class="hd-iln clearfix">
+                                <a class="hd-mlnimg" href="" title=""><img src="/images/ex/news.jpg" alt=""></a>
+                                <div class="hd-mlnif">
+                                    <h3><a class="hd-mlnname" href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8</a></h3>
+                                    <p class="hd-mlnsub">Hard reset sẽ xóa toàn bộ dữ liệu của máy về lại mặc định và bạn nên đăng xuất các tài khoản Google ra khỏi máy…</p>
+                                    <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                                </div>
+                            </div>
+                            <!--1-->
+                            <div class="hd-iln clearfix">
+                                <a class="hd-mlnimg" href="" title=""><img src="/images/ex/news.jpg" alt=""></a>
+                                <div class="hd-mlnif">
+                                    <h3><a class="hd-mlnname" href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8</a></h3>
+                                    <p class="hd-mlnsub">Hard reset sẽ xóa toàn bộ dữ liệu của máy về lại mặc định và bạn nên đăng xuất các tài khoản Google ra khỏi máy…</p>
+                                    <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                                </div>
+                            </div>
+                            <!--1-->
+                            <div class="hd-iln clearfix">
+                                <a class="hd-mlnimg" href="" title=""><img src="/images/ex/news.jpg" alt=""></a>
+                                <div class="hd-mlnif">
+                                    <h3><a class="hd-mlnname" href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8</a></h3>
+                                    <p class="hd-mlnsub">Hard reset sẽ xóa toàn bộ dữ liệu của máy về lại mặc định và bạn nên đăng xuất các tài khoản Google ra khỏi máy…</p>
+                                    <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                                </div>
+                            </div>
+                            <!--1-->
+                            <div class="hd-iln clearfix">
+                                <a class="hd-mlnimg" href="" title=""><img src="/images/ex/news.jpg" alt=""></a>
+                                <div class="hd-mlnif">
+                                    <h3><a class="hd-mlnname" href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8</a></h3>
+                                    <p class="hd-mlnsub">Hard reset sẽ xóa toàn bộ dữ liệu của máy về lại mặc định và bạn nên đăng xuất các tài khoản Google ra khỏi máy…</p>
+                                    <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                                </div>
+                            </div>
+                            <!--1-->
+                        </div>
+                        <p class="hd-mlnvmore"><button type="button">Xem thêm</button></p>
+                    </div>
+                    <div class="hd-col37">
+                        <div class="hd-rbox">
+                            <h3 class="hd-rbtit">Câu hỏi mới nhất</h3>
+                            <div class="hd-rbinfo">
+                                <ul class="hd-rbchm">
+                                    <li>
+                                        <h3><a href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8, Windows 10?</a></h3>
+                                        <p>20 giờ trước - Tony Ja</p>
+                                    </li>
+                                    <li>
+                                        <h3><a href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8, Windows 10?</a></h3>
+                                        <p>20 giờ trước - Tony Ja</p>
+                                    </li>
+                                    <li>
+                                        <h3><a href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8, Windows 10?</a></h3>
+                                        <p>20 giờ trước - Tony Ja</p>
+                                    </li>
+                                    <li>
+                                        <h3><a href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8, Windows 10?</a></h3>
+                                        <p>20 giờ trước - Tony Ja</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="hd-rbox">
+                            <h3 class="hd-rbtit">Sản phẩm được hỏi nhiều</h3>
+                            <div class="hd-rbinfo">
+                                <ul class="hd-rbspm">
+                                    <li>
+                                        <a href="" title="">
+                                            <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                            <div class="hd-rbsp-if">
+                                                <h3>iPhone 6s</h3>
+                                                <p>287 hướng dẫn | 34 câu hỏi</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" title="">
+                                            <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                            <div class="hd-rbsp-if">
+                                                <h3>iPhone 6s</h3>
+                                                <p>287 hướng dẫn | 34 câu hỏi</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" title="">
+                                            <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                            <div class="hd-rbsp-if">
+                                                <h3>iPhone 6s</h3>
+                                                <p>287 hướng dẫn | 34 câu hỏi</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="hd-rbsp-ip">
+                                    <input type="text" placeholder="Tìm kiếm theo sản phẩm">
+                                    <div class="hd-rbsp-search">
+                                        <!--<ul>
+                                            <li><a href="" title="">Samsung Galaxy Note 8</a></li>
+                                            <li><a href="" title="">Samsung Galaxy A7 (2017)</a></li>
+                                            <li><a href="" title="">Samsung Galaxy S8</a></li>
+                                            <li><a href="" title="">Samsung Galaxy J3 LTE</a></li>
+                                            <li><a href="" title="">Samsung Galaxy J7+</a></li>
+                                        </ul>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
