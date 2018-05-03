@@ -1,0 +1,337 @@
+﻿
+@model FPTShop_Forum2.Models.Post.PostListModel
+@using Tools
+@{      
+    //ViewBag.Title = $"{Model.Tag.SeoTitle} - FPTShop.com.vn";
+    ViewBag.Title = "FPTShop.com.vn";
+    // ViewBag.Name = Model.Tag.SeoTitle;
+    //ViewBag.LoadingURL = Model.category.UrlSlug?Model.category.Name:Model.category.UrlSlug;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts{
+<script>
+
+    (function ($) {
+        //alert(1);
+        function GetLoopData(page) {
+            var  IsLoading = true;
+            var loadmore = $("#huongdan");
+            $.ajax({
+                type: 'GET',
+                url: '@Url.RouteUrl(new { action= "LoadPostNotNameCategory", controller="Home"})',
+                data: {
+                    page: page,
+                    catURL: '@Model.category.UrlSlug'
+                },
+                dataType: 'html',
+                beforesuccess: function () {
+                },
+                success: function (data) {
+                    if (data != null && data != "" && data != 0 && data.length != 0)
+                    {
+                        $("#huongdan").before(data);
+                        IsLoading = false;
+                        //page++;
+                        loadmore.show();
+                    }
+                    else //if(data==0 || data==null ||data=="")
+                    {
+                        IsLoading = true;
+                        loadmore.hide();
+                        loadmore.css("display", "none");
+                        //loadmore.css("display", "none");
+                    }
+                },
+                complete: function () {
+                    //loadmore.show();
+                }
+            });
+        }
+
+        $(window).ready(function () {
+            var pageIndex = 2;
+            var IsLoading = false;
+            var loadmore = $("#huongdan");
+            $("#huongdan").on('click', GetData);
+
+            function GetData() {
+                IsLoading = true;
+                //var loadmore = $("#huongdan");
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.RouteUrl(new { action= "LoadPostNotNameCategory", controller="Home"})',
+                    data: {
+                        page: pageIndex,
+                        catURL: '@Model.category.UrlSlug'
+                    },
+                    dataType: 'html',
+                    success: function (data) {
+                        if (data != null && data != "" && data!=0 && data.length!=0)
+                        {
+                            if (window.location.search.length == 0)
+                            {
+                                //var link = "/" + location.pathname.length == 1 ? "" : location.pathname + "?page=2";
+                                window.history.pushState(null, null, null);
+                            }
+                            else 
+                            {
+                                //var link = "/" + location.pathname.length == 1 ? "" : location.pathname + "?page=" + (parseInt(location.search.replace("?page=", "")) + 1).toString();
+                                window.history.pushState(null, null, null);
+                            }
+                            $("#huongdan").before(data);
+                            pageIndex++;
+                            IsLoading = false;
+                            loadmore.show();
+                        }
+                        else //if (data == 0 || data == null || data=="")
+                        {
+                            IsLoading = true;
+                            loadmore.hide();
+                            //pageIndex = null;
+                            data = null;
+                            loadmore.css("display", "none");
+                        }
+                    },
+                    complete: function () {
+                        //loadmore.show();
+                    }
+                    
+                });
+                return false;
+            }
+
+        });
+
+        //$("#huongdan").on('click',GetLoopData(page))
+
+        $(window).on('load', function () {
+            var key, n;
+            if (key = location.search, key != null)
+            {
+                for (n = 2; n <= parseInt(location.search.replace("?page=", "")) ; n++) {
+                    GetLoopData(n);
+                }
+                if ((n - 1) == parseInt(location.search.replace("?page=", ""))) {
+                    $('html', 'body').animate({ scrollTop: $("#huongdan").offset().top - 1000 }, 0);
+                }
+            }
+        })
+    })(window.jQuery);
+</script>
+
+
+
+
+<script>
+
+    (function ($) {
+        
+        function LoopData(size) {
+            var loadmore = $("#cauhoi");
+            var IsLoading = true;
+            $.ajax({
+                url: '@Url.RouteUrl(new { action= "LoadPostNameCategory", controller="Home"})',
+                type: 'GET',
+                dataType:'html',
+                data: {
+                    size: size,
+                    categoryUrl: '@Model.category.UrlSlug'
+                },
+                success: function (data)
+                {
+                    if (data != null && data != "" && data != 0 &&data.length!=0)
+                    {
+                        $("#cauhoi").before(data);
+                        IsLoading = false;
+                        loadmore.show();
+                    }
+                    else
+                    {
+                        IsLoading = true;
+                        loadmore.hide();
+                        loadmore.css("display", "none");
+                    }
+                }
+            });
+        }
+
+        $(window).ready(function () {
+            var pageIndex = 2;
+            var IsLoading = false;
+            var loadmore = $("#cauhoi");
+            // viết sự kiện click xem thêm
+            $("#cauhoi").on('click', GetPostName);
+
+            function GetPostName() {
+                IsLoading = true;
+                //var loadmore = $("#cauhoi");
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.RouteUrl(new {action= "LoadPostNameCategory",controller="Home" })',
+                    dataType: 'html',
+                    data: {
+                        "size": pageIndex,
+                        categoryUrl: '@Model.category.UrlSlug'
+                    },
+                    success: function (data)
+                    {
+                        if (data != null && data != "" && data != 0)
+                        {
+                            if (window.location.search.length == 0) {
+                                //var link = "/" +location.pathname.length == 1 ? "" : location.pathname + "?page=2";
+                                window.history.pushState(null, null, null);
+                            }
+                            else
+                            {
+                                //var link = "/" +location.pathname.length == 1 ? "" : location.pathname + "?page=" + (parseInt(location.search.replace("?page=", "")) + 1).toString();
+                                window.history.pushState(null, null, null);
+                            }
+                            $("#cauhoi").before(data);
+                            pageIndex++;
+                            IsLoading = false;
+                            loadmore.show();
+                        }
+                        else
+                        {
+                            IsLoading = true;
+                            loadmore.hide();
+                        }
+                    }
+                    
+                });
+                return false;
+            }
+        });
+
+        $(window).on('load', function () {
+            var key, n;
+            if (key = location.search, key != null) {
+                for (n = 2; n <= parseInt(location.search.replace("?page=", "")) ; n++) {
+                    LoopData(n);
+                }
+            }
+            if ((n - 1) == parseInt(location.search.replace("?page=", ""))) {
+                $('html', 'body').animate({ scrollTop: $("#cauhoi").offset().top - 1000 }, 0);
+            }
+        });
+
+    })(window.jQuery);
+</script>
+
+  
+    }
+
+<div class="hd-col78">
+    <h1 class="hd-mlnh">Hướng dẫn, thủ thuật Samsung Galaxy Note8</h1>
+    <div class="hd-rows clearfix">
+        <div class="hd-col63">
+            <ul class="hd-hdchti">
+                <li class="active"><a href="#huong-dan" title="">Hướng dẫn</a></li>
+                <li><a href="#cau-hoi" title="">Câu hỏi</a></li>
+            </ul>
+
+            <div class="hd-tabmain">
+                @*@Html.Partial("ListPostBox",Model)*@
+                                            
+                    @*@Html.Partial("ListPostBox",Model)*@
+                    @*<p class="hd-mlnvmore" id="huongdan" name="huongdan"><button class="fp_huongdan" type="button">Xem thêm</button></p>*@
+                    @*<p class="hd-mlnvmore" name="cauhoi"><button type="button">Xem thêm</button></p>*@
+             
+                            <div class="hd-tabbox" id="huong-dan">
+                                @Html.Partial("ListPostBox", Model.Posts)
+
+                                <p class="hd-mlnvmore" id="huongdan" ><button name="request" value="guide" type="button">Xem thêm</button></p>
+                            </div>
+
+
+                            <div class="hd-tabbox" id="cau-hoi" style="display: none;">
+
+                                @Html.Partial("ListPostNameBox", Model.PostLastUserName)
+
+                                @*<ul class="hd-lchs">
+                                    
+            
+                                        <li>
+                                            <h3><a class="hd-mlnname" href="" title="">hehe</a></h3>
+                                            <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                                        </li>
+                                  
+                                </ul>*@
+
+                                <p class="hd-mlnvmore" id="cauhoi"  ><button name="request" value="ask" type="button">Xem thêm</button></p>
+                            </div>
+                
+
+
+                            @*<div class="hd-tabbox" id="huong-dan">                                          
+                                @Html.Partial("ListPostBox", Model.Posts)        
+                                                               
+                                <p class="hd-mlnvmore" id="huongdan" name="huongdan"><button class="fp_huongdan" type="button">Xem thêm</button></p>
+                            </div>
+                          
+
+                            <div class="hd-tabbox" id="cau-hoi" style="display: none;">
+
+                                @Html.Partial("ListPostBox",Model.PostLastUserName)                                                                  
+                                                                                 
+                                <p class="hd-mlnvmore" name="cauhoi"><button type="button">Xem thêm</button></p>
+                            </div>*@                     
+            </div>
+       </div>
+
+        <div class="hd-col37">
+            <div class="hd-rbox">
+                <h3 class="hd-rbtit">Sản phẩm được hỏi nhiều</h3>
+                <div class="hd-rbinfo">
+                    <ul class="hd-rbspm">
+                        <li>
+                            <a href="" title="">
+                                <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                <div class="hd-rbsp-if">
+                                    <h3>iPhone 6s</h3>
+                                    <p>287 hướng dẫn | 34 câu hỏi</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" title="">
+                                <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                <div class="hd-rbsp-if">
+                                    <h3>iPhone 6s</h3>
+                                    <p>287 hướng dẫn | 34 câu hỏi</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" title="">
+                                <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                <div class="hd-rbsp-if">
+                                    <h3>iPhone 6s</h3>
+                                    <p>287 hướng dẫn | 34 câu hỏi</p>
+                                </div>
+                            </a>
+                        </li>
+                    </ul>
+
+                    <div class="hd-rbsp-ip">
+                        <input type="text" placeholder="Tìm kiếm theo sản phẩm">
+                        <div class="hd-rbsp-search">
+                            <!--<ul>
+                                <li><a href="" title="">Samsung Galaxy Note 8</a></li>
+                                <li><a href="" title="">Samsung Galaxy A7 (2017)</a></li>
+                                <li><a href="" title="">Samsung Galaxy S8</a></li>
+                                <li><a href="" title="">Samsung Galaxy J3 LTE</a></li>
+                                <li><a href="" title="">Samsung Galaxy J7+</a></li>
+                            </ul>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,242 @@
+﻿
+@*@using Model.Entities
+@model Customer*@
+
+<!DOCTYPE html>
+<html lang="vi">
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+<script src="js/libs/html5shiv.min.js"></script>
+<script src="js/libs/respond.min.js"></script>
+<![endif]-->
+<head>
+    <title>FPTShop</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/images/favicon.ico">
+
+    <!-- Css -->
+    @*<link rel="stylesheet" href="css/popup-bootstrap.css" />
+        <link rel="stylesheet" href="css/reset.css" />
+        <link rel="stylesheet" href="css/header.footer.css" />
+        <link rel="stylesheet" href="css/style.css" />*@
+
+
+    <link href="@("https://fptshop.com.vn" + Request.Url.AbsolutePath)" rel="canonical" />
+
+    @Styles.Render("~/Content/css")
+    @*<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">*@
+    @*<link href="/Content/Awesome.css" rel="stylesheet" />*@
+
+
+
+
+    <!-- jsLib -->
+    @*<script src="js/libs/ie-emulation-modes-warning.js"></script>
+        <script src="js/libs/jquery-1.11.2.min.js"></script>*@
+    @*<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.js"></script>*@
+    @Scripts.Render("~/bundles/script")
+    <script src="/Scripts/TuTao/CallFunction.js"></script>
+    <link href="/Content/bootstrap-social.css" rel="stylesheet" />
+</head>
+<body>
+
+    @Html.Partial("FSHeader")
+
+    <div class="hd-header">
+        <div class="f-wrap">
+            <div class="hd-rows clearfix">
+                <div class="hd-col22">
+                    <h1 class="hd-wtit">HỎI ĐÁP</h1>
+                </div>
+                <div class="hd-col50">
+                    <div class="hd-search">
+                        <input class="hd-seaiput" type="text" placeholder="Tìm kiếm hướng dẫn, câu hỏi, bài viết...">
+                        <button style="display: none;" class="hd-sresbtn" type="button">Đặt câu hỏi</button>
+                        <div class="hd-sres" style="display: none;">
+                            <ul>
+                                <li><a href="" title=""><span>Tìm kiếm:</span> <strong> iPhone X có gì hay</strong></a> </li>
+                                <li><a href="" title=""><strong>iPhone X có gì</strong> hot</a></li>
+                                <li><a href="" title="">Tại sao chọn <strong>iPhone X?</strong></a></li>
+                                <li><a href="" title="">Giá <strong>iPhone X?</strong></a></li>
+                                <li>
+                                    <a href="" title="">
+                                        <i><img src="/images/ex/news.jpg" alt=""></i>
+                                        <h3>Tổng hợp mẹo hay trên <strong>iPhone X</strong></h3>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" title="">
+                                        <i><img src="/images/ex/news.jpg" alt=""></i>
+                                        <h3>Tổng hợp mẹo hay trên <strong>iPhone X</strong></h3>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="" title="">
+                                        <i><img src="/images/ex/news.jpg" alt=""></i>
+                                        <h3>Tổng hợp mẹo hay trên <strong>iPhone X</strong></h3>
+                                    </a>
+                                </li>
+                            </ul>
+                            <p class="hd-sresbot"><button type="button">+ Đặt câu hỏi mới</button> </p>
+                        </div>
+                    </div>
+                </div>
+
+                @Html.Partial("~/Views/Shared/_LoginVsQuestion.cshtml")
+                @*@RenderPage("_LoginVsQuestion.cshtml")*@
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <section class="hd-main">
+        <div class="f-wrap">
+            <div class="hd-rows clearfix">
+
+                @*Category*@
+                @Html.Partial("_Category")
+    
+
+               
+                @RenderBody()
+
+            </div>
+
+        </div>
+    </section>
+
+
+
+
+    @Html.Partial("~/Views/Shared/_ModalLogin.cshtml")
+    <footer>
+        <div class="fs-footer">
+            <div class="f-wrap">
+                <div class="fs-ftrow clearfix">
+                    <div class="fs-ftcol fs-ftcol1">
+                        <h2>Giới thiệu về công ty</h2>
+                        <ul class="fs-ftul">
+                            <li><a href="" title="">Câu hỏi thường gặp mua hàng</a></li>
+                            <li><a href="" title="">Các chính sách FPT Shop</a></li>
+                            <li><a href="" title="">Hệ thống bảo hành</a></li>
+                        </ul>
+                    </div>
+                    <div class="fs-ftcol fs-ftcol1">
+                        <h2>Tin tuyển dụng</h2>
+                        <ul class="fs-ftul">
+                            <li><a href="" title="">Tin khuyến mãi</a></li>
+                            <li><a href="" title="">Hướng dẫn mua online</a></li>
+                            <li><a href="" title="">Hướng dẫn mua trả góp</a></li>
+                        </ul>
+                    </div>
+                    <div class="fs-ftcol fs-ftcol1">
+                        <h2>Hệ thống cửa hàng</h2>
+                        <ul class="fs-ftul">
+                            <li><a href="" title="">Kiểm tra hàng Apple chính hãng</a></li>
+                            <li><a href="" title="">Giới thiệu máy đổi trả</a></li>
+                            <li><a href="" title="">Giới thiệu xả hàng</a></li>
+                        </ul>
+                    </div>
+                    <div class="fs-ftcol  fs-ftcol2">
+                        <div class="fs-ftr1">
+                            <span>Hỗ trợ thanh toán</span>
+                            <a class="fs-ftr-vs" href="" title=""></a>
+                            <a class="fs-ftr-mt" href="" title=""></a>
+                            <a class="fs-ftr-atm" href="" title=""></a>
+                        </div>
+                        <ul class="fs-ftr2 clearfix">
+                            <li>
+                                <p>Tư vẫn miễn phí (24/7)</p>
+                                <a href="" title="">1800 6601</a>
+                            </li>
+                            <li>
+                                <p>Góp ý, phản ánh(8h00 - 22h00)</p>
+                                <a href="" title="">1800 6616</a>
+                            </li>
+                        </ul>
+                        <div class="fs-ftr3">
+                            <ul>
+                                <li><a class="fs-ftr-cthuong" href="" title=""></a></li>
+                                <li><a class="fs-ftr-dmca" href="" title=""></a></li>
+                                <li><a class="fs-ftr-sp" href="" title=""></a></li>
+                                <li><a class="fs-ftr-thieuvn" href="" title=""></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="fs-ftbott">
+            © 2007 - 2016 Công Ty Cổ Phần Bán Lẻ Kỹ Thuật Số FPT / Địa chỉ: 261 Khánh Hội, P5, Q4, TP. Hồ Chí Minh / GPĐKKD số 0311609355 do Sở KHĐT TP.HCM cấp ngày 08/03/2012.
+        </div>
+    </footer>
+
+
+
+    @*<p><button type="button" data-toggle="modal" data-target="#dang-nhap"> DANG NHAP </button></p>
+        <p><button type="button" data-toggle="modal" data-target="#gui-cau-hoi"> GUI CAU HOI </button></p>
+    <p><button type="button" data-toggle="modal" data-target="#gui-thanh-cong"> GUI CAU HOI THANH CONG </button></p>
+
+
+
+    <!-- DANG NHAP -->
+    <!-- GUI CAU HOI -->
+    <div class="modal fade" id="gui-cau-hoi" tabindex="-1" role="dialog">
+        <div class="modal-dialog md-chois" role="document">
+            <div class="modal-content md-mnis">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Câu hỏi của bạn</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="md-chbbox clearfix">
+                        <span class="md-chimg"><img src="~/images/admin.png" alt=""></span>
+                        <div class="md-chif">
+                            <div class="md-chiput"><input type="text" placeholder="Bạn muốn hỏi gì?"></div>
+                            <div class="md-chfile">
+                                <label>
+                                    <input type="file" id="UpLoadHs1">
+                                    <p> <img src="/images/attachment-material.png"> <span>Đính kèm hình ảnh</span></p>
+                                </label>
+                                <ul class="gtu-b4ul" id="UpLoadFlie1">
+                                    <!--<li><img src="images/gop/1303/img.jpg" alt=""> <p>giayto.jpg</p> <i></i></li>-->
+                                </ul>
+                            </div>
+                            <p class="md-chbot"><button type="button">Gửi câu hỏi</button></p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- GUI THANH CONG -->
+    <div class="modal fade" id="gui-thanh-cong" tabindex="-1" role="dialog">
+        <div class="modal-dialog md-dnhap" role="document">
+            <div class="modal-content md-mnis">
+                <div class="modal-body">
+                    <p class="hd-md-s1"><span></span></p>
+                    <p class="hd-md-s2">Gửi câu hỏi thành công</p>
+                    <p class="hd-md-s3">Chúng tôi sẽ trả lời câu hỏi của bạn trong thời gian sớm nhất có thể</p>
+                    <p class="hd-md-s4"><button type="button" data-dismiss="modal">Đóng</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JsCall -->
+    @*<script src="js/libs/popup-bootstrap.min.js"></script>
+        <script src="js/functions.js"></script>*@
+
+
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

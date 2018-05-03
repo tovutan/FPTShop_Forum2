@@ -1,0 +1,171 @@
+﻿@using Model.Entities
+
+@*<meta name="google-signin-client_id" content="284477382303-hnpmsefbn96kfi5uo7nbt42odkoavm2u.apps.googleusercontent.com">*@
+<meta name="google-signin-client_id" content="896622894562-eams8dj01aesjt83rq08v7n7qlr42esv.apps.googleusercontent.com">
+<link href="~/Content/bootstrap-social.css" rel="stylesheet" />
+<script src="~/Scripts/LiberyJavaScript/Tools.js"></script>
+@*<script src="https://apis.google.com/js/platform.js" async defer></script>*@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+@*<script src="~/Assets/admin/login.js"></script>*@
+<style>
+
+    .btn-google {
+          width:100%; 
+          background:red;
+          height:45px;
+          text-align:center;
+          position:relative;
+          margin-top:5px;        
+    }
+    .btn-facebook {
+        width:100%;
+        height:45px;
+        
+        position:relative;
+        margin-top:5px;
+    }
+    .fa-facebook {
+        font-size:35px;
+        
+        font-style:normal;
+        color:white;
+        margin-left:-220px;
+    }
+    .textfb {
+        position:absolute;
+        
+        top:12px;
+        left:70px;
+    }
+    .fa-google-plus {
+      font-size:35px; 
+      font-style:normal;
+      color:white; 
+     
+      border:solid 2px #e3411f ;
+      background:#e3411f;
+       margin-left:-200px;
+    }
+    .text {
+        
+        position:absolute;
+        top: 12px;
+        left: 70px;
+    }
+        .btn-google:hover:not(:empty) {
+            
+        }
+  
+</style>
+
+<div id="status">
+</div>
+
+<div class="modal fade" id="dang-nhap" tabindex="-1" role="dialog">
+    <div class="modal-dialog md-dnhap" role="document">
+        <div class="modal-content md-mnis">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">ĐĂNG NHẬP</h4>
+            </div>
+            <div class="modal-body">
+                <div class="hd-dn1" style="display: block">
+                    <p class="hd-mdln1">Đăng nhập để nhận được thông báo khi có người trả lời cho bạn</p>
+
+                    <ul class="hd-mdlink">
+                       @{ 
+                           @*using (Html.BeginForm("UpdateUserInfo", "Home",FormMethod.Post /*, new { ReturnUrl = Model.ReturnUrl }*/))
+                           {
+                               @Html.AntiForgeryToken()*@
+
+                                @*<li><a href="javascript:" title="" id="Facebook" name="provider"><img src="/images/lg-fb.png"></a></li>
+                                <li><a href="~/Home/UpdateUserInfo" name="provider" title="" id="Google"><img src="/images/lg-gg.png"></a></li>*@
+
+
+                               // 
+                                    @*<li>
+                                        <button type="submit" class="btn btn-facebook" id="Facebook" style="background-color:#3b5998" name="provider" value="Facebook" title="Log in using your Facebook account">
+                                        <i class="fa fa-facebook"></i>
+                                        <span class="textfb">Đăng nhập bằng Facebook</span>
+                                        </button>
+                                    </li>
+
+
+
+                                    <li>
+
+                                        <button type="submit" class="btn btn-google" style="background-color:#e3411f;" id="Google" name="provider" value="Google" title="Log in using your Google account">
+                                            <i class="fa fa-google-plus"></i>
+                                            <span class="text">Đăng nhập bằng Google</span>
+                                        </button>
+
+                                    </li>*@
+
+                                <li><a href="javascript:OpenLoginWindowCampaign(1,'@Url.Action("LoginWithGooglePlus", "LoginSocial",new { n=1})');" title="" id="Facebook" name="provider"><img src="/images/lg-fb.png"></a></li>
+                                <li><a href="javascript:OpenLoginWindowCampaign(2,'@Url.Action("LoginWithGooglePlus", "LoginSocial",new { n=2})');" name="provider" title="" id="Google"><img src="/images/lg-gg.png"></a></li>
+                           @*}*@
+
+
+// thử
+
+
+                        @*<button type="button" onclick="checkLoginState();">Login Facebook!</button>
+                        <button type="button" id="btnGoogleLogin">Login Google!</button>
+                        <br />
+
+                        <div class="fb-like"
+                             data-share="true"
+                             data-width="450"
+                             data-show-faces="true">
+                        </div>
+                        <br />
+
+                        <div class="g-signin2" data-onsuccess="onSignIn" value="Google">Google login</div>
+                        <button data-onsuccess="onSignIn">Đăng nhập Google</button>
+                        <br />
+                        <a href="#" onclick="signOut();">Sign out</a>
+                        <br />*@
+                        @*<img id="googleSignIn" src="~/"></img>*@
+
+
+
+                    }
+
+                    </ul>
+
+                </div>
+                <div class="hd-dn2" style="display: none">
+                    <p class="hd-mdln2">Đăng nhập bằng facebook thành công</p>
+                    <p class="hd-mdln3">Hãy nhập email hoặc số điện thoại để nhân thông báo khi có người trả lời</p>
+                    <p class="hd-mdln4"><input type="text" class="" placeholder="Hãy nhập email hoặc số điện thoại"></p>
+                    <p class="hd-mdln5"><button type="button">Đăng nhập</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    //$(function click() {
+   
+    //$(document).ready(function () {
+    //    $("#Google").off('click').on('click', function (e) {
+    //        e.preventDefault();
+    //    $.ajax({
+    //        url: '/Home/UpdateUserInfo',
+    //        type: 'POST',
+    //        contentType: "application/json; charset=utf-8",
+
+    //        success: function () {
+
+    //        }
+    //        //    });
+    //        //});
+    //    });
+    //})
+</script>
+@*<script src="https://apis.google.com/js/platform.js?onload=onLoadGoogleCallback" async defer></script>*@
+
+

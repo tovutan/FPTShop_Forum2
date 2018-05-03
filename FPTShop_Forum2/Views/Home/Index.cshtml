@@ -1,0 +1,204 @@
+﻿@model FPTShop_Forum2.Models.Post.PostListModel
+@using Tools
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<script src="~/Assets/admin/login.js"></script>*@
+
+@section Scripts{
+    <script>
+        (function ($) {
+            function GetLoopData(page) {
+                var IsLoading = true;
+                var loadmore = $("#morePost");
+                $.ajax({
+                    url: '@Url.RouteUrl(new { action= "LoadPostHome",controller="Home"})',
+                    data:{
+                        page:page
+                    },
+                    type: 'GET',
+                    dataType: 'html',
+                    success: function (data) {
+                        if (data != null && data != "" && data.length != 0) {
+
+                            loadmore.before(data);
+                            IsLoading = false;
+                            loadmore.show();
+                            
+                        }
+                        else
+                        {
+                            IsLoading = true;
+                            loadmore.hide();
+                        }
+                    }
+                });
+            }
+
+            $(window).ready(function () {
+                var IsLoading = false;
+                var loadmore = $("#morePost");
+                var pageIndex=2;
+                $("#morePost").on('click', GetData);
+
+                //Hàm GetData
+                function GetData() {
+                    IsLoading = true;
+                    $.ajax({
+                        url: '@Url.RouteUrl(new { action= "LoadPostHome" })',
+                        data: {
+                            "page":pageIndex
+                        },
+                        type: 'GET',
+                        dataType: 'html',
+                        success: function (data) {
+                            if (data != null && data != "" && data.length != 0) {
+                                if (window.location.search.length == 0) {
+                                    var link = "/" + location.pathname.length == 1 ? "" : location.pathname + "?page=2";
+                                    window.history.pushState(null, null, link);
+                                }
+                                else {
+                                    var link = "/" + location.pathname == 1 ? "" : location.pathname + "?page=" + (parseInt(location.search.replace("?page=", "")) + 1);
+                                    window.history.pushState(null, null, link);
+                                }
+
+                                loadmore.before(data);
+                                IsLoading = false;
+                                pageIndex++;
+                                loadmore.show();
+                            }
+                            else {
+                                IsLoading = true;
+                                loadmore.hide();
+                            }
+                        }
+                    });
+                }
+            });
+
+            $(window).on('load', function () {
+                var n, key;
+                if (key = window.location.search, key != null)
+                {
+                    for (i = 2; n <= parseInt(window.location.search.replace("?page=","")); i++) {
+                        GetLoopData(n);
+                    }
+                    if ((n - 1) == parseInt(location.search.replace("?page=", "")))
+                    {
+                        $('html', 'body').animate({ scrollTop: $("#morePost").offset().top - 1000 }, 0);
+                    }
+                }
+                
+            });
+        })(window.jQuery);
+    </script>
+    }
+           
+
+
+
+            <div class="hd-col78">
+                <ul class="hd-midmn clearfix">
+                    <li><a href="" title=""><h2>Cách sạc pin cho điện thoại</h2></a></li>
+                    <li><a href="" title=""><h2>Tắt lớp phủ màn hình android</h2></a></li>
+                    <li><a href="" title=""><h2>Khi điện thoại bị nóng</h2></a></li>
+                    <li><a href="" title=""><h2>Hướng dẫn điện thoại có 4G</h2></a></li>
+                    <li><a href="" title=""><h2>Kiểm tra iPhone chính hãng</h2></a></li>
+                </ul>
+
+                <div class="hd-rows clearfix">
+
+
+
+                    <div class="hd-col63">
+                        <h1 class="hd-mlnh">Hướng dẫn, thủ thuật mới nhất</h1>
+
+                        @Html.Partial("ListPostBox",Model.Posts)
+                      
+                        <p class="hd-mlnvmore" id="morePost"><button type="button">Xem thêm</button></p>
+                    </div>
+
+
+                    <div class="hd-col37">
+                        <div class="hd-rbox">
+                            <h3 class="hd-rbtit">Câu hỏi mới nhất</h3>
+                            <div class="hd-rbinfo">
+                                <ul class="hd-rbchm">
+                                    <li>
+                                        <h3><a href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8, Windows 10?</a></h3>
+                                        <p>20 giờ trước - Tony Ja</p>
+                                    </li>
+                                    <li>
+                                        <h3><a href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8, Windows 10?</a></h3>
+                                        <p>20 giờ trước - Tony Ja</p>
+                                    </li>
+                                    <li>
+                                        <h3><a href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8, Windows 10?</a></h3>
+                                        <p>20 giờ trước - Tony Ja</p>
+                                    </li>
+                                    <li>
+                                        <h3><a href="" title="">Hướng dẫn tạo USB cài Windows 7, Windows 8, Windows 10?</a></h3>
+                                        <p>20 giờ trước - Tony Ja</p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="hd-rbox">
+                            <h3 class="hd-rbtit">Sản phẩm được hỏi nhiều</h3>
+                            <div class="hd-rbinfo">
+                                <ul class="hd-rbspm">
+                                    <li>
+                                        <a href="" title="">
+                                            <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                            <div class="hd-rbsp-if">
+                                                <h3>iPhone 6s</h3>
+                                                <p>287 hướng dẫn | 34 câu hỏi</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" title="">
+                                            <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                            <div class="hd-rbsp-if">
+                                                <h3>iPhone 6s</h3>
+                                                <p>287 hướng dẫn | 34 câu hỏi</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="" title="">
+                                            <span class="hd-rbsp-img"><img src="/images/ex/prod.jpg" alt=""></span>
+                                            <div class="hd-rbsp-if">
+                                                <h3>iPhone 6s</h3>
+                                                <p>287 hướng dẫn | 34 câu hỏi</p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <div class="hd-rbsp-ip">
+                                    <input type="text" placeholder="Tìm kiếm theo sản phẩm">
+                                    <div class="hd-rbsp-search">
+                                        <!--<ul>
+                                            <li><a href="" title="">Samsung Galaxy Note 8</a></li>
+                                            <li><a href="" title="">Samsung Galaxy A7 (2017)</a></li>
+                                            <li><a href="" title="">Samsung Galaxy S8</a></li>
+                                            <li><a href="" title="">Samsung Galaxy J3 LTE</a></li>
+                                            <li><a href="" title="">Samsung Galaxy J7+</a></li>
+                                        </ul>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+
+
+

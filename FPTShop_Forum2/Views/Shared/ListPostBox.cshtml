@@ -1,0 +1,68 @@
+﻿@model IList<FPTShop_Forum2.Models.Post.PostItemModel>
+@using Tools
+
+@*Hướng dẫn*@
+@*@if(Model!=null)
+{*@
+    @*<div class="hd-tabbox" id="huong-dan">*@
+@if (Model!=null)
+{
+        <div class="hd-lnews">
+            @foreach (var item in Model)
+            {
+                <div class="hd-iln clearfix">
+                    @*<a class="hd-mlnimg" href="" title=""><img src="/images/ex/news.jpg" alt=""></a>*@
+                    <a class="hd-mlnimg" href="" title="">
+                        @if (item.Image != null)
+                        {
+                            <img src="@item.Image.AvataImage.Medium" alt="" style="width:180px;height:100px;">;
+                        }
+                        else
+                        {
+                            <img src = "/images/ex/news.jpg" alt = "" >;
+                        }
+                    </a>  @*Ảnh*@
+
+
+                    <div class="hd-mlnif">
+                            @*Title*@
+                            <h3><a class="hd-mlnname" href="" title="">@item.Title</a></h3>
+                     
+                            <p class="hd-mlnsub">@Html.Raw(Utility.TrimLength(item.Description, 150))</p>  @*Content có chứa Table
+
+                            @*PostInfo*@
+                            <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                   </div>
+
+               </div>
+               
+            }
+        </div>
+}
+
+//else if(Model.Where(p=>p.LastPostUserName!=null)!=null)
+//{
+        @*<p class="hd-mlnvmore" id="huongdan" name="huongdan"><button class="fp_huongdan" type="button">Xem thêm</button></p>*@
+     @*</div>*@
+
+
+
+        @*Câu hỏi*@
+    @*<div class="hd-tabbox" id="cau-hoi" style="display: none;">*@
+
+
+        @*<ul class="hd-lchs">
+            @foreach (var item in Model.Where(p => p.LastPostUserName != null))
+            {
+                <li>
+                    <h3><a class="hd-mlnname" href="" title="">@item.Title</a></h3>
+                    <p class="hd-mlnbot"> <span><img src="/images/user.png" alt=""> 2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+                </li>
+            }
+        </ul>*@
+        @*<p class="hd-mlnvmore" name="cauhoi"><button type="button">Xem thêm</button></p>*@
+@*}*@
+
+    @*</div>*@
+    @*}*@
+

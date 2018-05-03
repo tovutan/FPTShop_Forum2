@@ -1,0 +1,129 @@
+﻿@*@using Model.Entities
+@model List<Category>*@
+
+@using FPTShop_Forum2.Models
+@model List<CategoryItemModel>
+
+
+<script>
+    //$(document).ready(function () {
+    //    $("#active").off('click').on('click', function () {
+    //        var ma = $(this).attr("data-id");
+    //        $("#categoryroot_" + ma).off('click').on('click', function () {
+    //            $.ajax({
+    //                success: function () {
+    //                    $("#childCat_" + ma).css('display', 'block');
+    //                },
+    //                complete: function () {
+    //                    $("#childCat_" + ma).css('display', 'block');
+    //                }
+    //            })
+               
+    //        });
+    //    });
+    //});
+</script>
+@{ 
+    List<CategoryItemModel> cat = (List<CategoryItemModel>)(ViewBag.catChild);
+    List<CategoryItemModel> grandCat = (List<CategoryItemModel>)(ViewBag.grandCat);
+}
+@{ 
+    foreach (var item in Model.Where(c => c.ParentID == 0).OrderBy(c=>c.ID))
+    {
+
+        // Sinh Con 
+       // var kq = Model.Where(c => c.ParentID > 0 && c.ParentID == item.ID);
+
+       
+        @*<li class="active">*@
+        <li class="active">
+            @*<a class="ic-android" href="javascript:void(0);" title=""><i class="name"></i> <h3 class="name">@item.Name</h3></a>*@
+
+            <a class="ic-android" href="@(string.IsNullOrEmpty(item.UrlSlug)?item.Name:Url.RouteUrl("ListPostCategory",new { catURL=item.UrlSlug }))" title="@(string.IsNullOrEmpty(item.SEOTitle)?item.Name:item.SEOTitle)">
+                <i class="name"></i> <h3 class="name">@item.Name</h3>
+            </a>
+
+            @* Khai báo Con *@
+            @if (cat != null)
+            {
+                <ul>
+                    @foreach(var childitem in cat.OrderBy(c => c.ID).Where(c => c.ParentID ==item.ID))
+                    {
+                        <li>
+                            <a href="@(string.IsNullOrEmpty(childitem.UrlSlug)?childitem.Name:Url.RouteUrl("ListPostCategory",new { catURL=childitem.UrlSlug }))" title="@(string.IsNullOrEmpty(childitem.SEOTitle)?childitem.Name:childitem.SEOTitle)">
+                                <i class="name"></i> <h3 class="name">@childitem.Name</h3>
+                            </a>
+
+                             @*Cháu*@
+                           @if(grandCat!=null)     
+                               {                       
+                                    <ul id="grandchild">
+                                        @foreach (var grandchild in grandCat.Where(c=>c.ParentID==childitem.ID))
+                                        {
+                                            <li>
+                                                <a href="@(string.IsNullOrEmpty(grandchild.UrlSlug)?grandchild.Name:Url.RouteUrl("ListPostCategory",new { catURL=grandchild.UrlSlug }))" title="@(string.IsNullOrEmpty(grandchild.SEOTitle)?grandchild.Name:grandchild.SEOTitle)">
+                                                    <i class="name"></i> <h3 class="name">@grandchild.Name</h3>
+                                                </a>
+                                            </li>
+                                        }
+
+                                    </ul>
+                               }
+                        </li>
+                    }
+                </ul>
+            }
+
+
+
+
+            @*@if (kq.Where(x => x.ParentID == item.ID).ToList() != null)
+            {
+                <ul>
+                    @foreach (var childitem in kq.OrderBy(c => c.ID))
+                    {
+
+                        
+                        var kq2 = Model.Where(c => c.ParentID > 0 && c.ParentID == childitem.ID);
+
+                        <li>
+                            <a href="@(string.IsNullOrEmpty(childitem.UrlSlug)?childitem.Name:Url.RouteUrl("ListPostCategory",new { catURL=childitem.UrlSlug }))" title="@(string.IsNullOrEmpty(childitem.SEOTitle)?childitem.Name:childitem.SEOTitle)">
+                                <i class="name"></i> <h3 class="name">@childitem.Name</h3>
+                            </a>
+
+                           
+                            @if (kq2.Where(x => x.ParentID == childitem.ID) != null)
+                            {
+                                <ul id="grandchild">
+                                    @foreach (var grandchild in kq2)
+                                    {
+                                        <li>
+                                            <a href="@(string.IsNullOrEmpty(grandchild.UrlSlug)?grandchild.Name:Url.RouteUrl("ListPostCategory",new { catURL=grandchild.UrlSlug }))" title="@(string.IsNullOrEmpty(grandchild.SEOTitle)?grandchild.Name:grandchild.SEOTitle)">
+                                                <i class="name"></i> <h3 class="name">@grandchild.Name</h3>
+                                            </a>
+                                        </li>
+                                    }
+
+                                </ul>
+                            }
+
+                        </li>
+                    }
+
+                </ul>
+
+             }*@
+
+
+
+
+
+
+
+        </li>
+    }
+}
+
+
+
+

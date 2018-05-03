@@ -1,0 +1,24 @@
+﻿@model IList<FPTShop_Forum2.Models.Post.PostItemModel>
+@using Tools
+
+
+@foreach (var item in Model)
+{
+    <ul class="hd-lchs">
+        <li>
+            <h3><a class="hd-mlnname" href="" title="">@item.Title</a></h3>
+            <p class="hd-mlnbot"> <span>
+                @if (item.Image != null)
+                {
+                    <img src="@item.Image.AvataImage.Thumb" alt="Alternate Text" style="width:180px;height:100px;"/>;
+                }
+                else
+                {
+                    <img src="/images/user.png" alt="">;
+                } 
+                2 giờ trước</span> <a href="" title=""><i class="hdic hdiforder"></i> Tài khoản Google Play</a></p>
+        </li>
+
+    </ul>
+}
+
